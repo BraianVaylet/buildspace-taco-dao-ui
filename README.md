@@ -6,7 +6,7 @@
 
 El proyecto se encuentra deployado en Vercel para que puedan verlo e interactuar con él, toda crítica o comentario se agradece, pueden acceder a la demo en el siguiente link:
 
-### **[VER DEMO]()**
+### **[VER DEMO](https://buildspace-taco-dao-ui.vercel.app/)**
 
 ## Sobre el proyecto
 
