@@ -5,7 +5,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "init:sdk": "node scripts/1-initialize-sdk.js"
   },
   "dependencies": {
     "@3rdweb/hooks": "^1.9.2",
@@ -15,7 +16,8 @@
     "@emotion/react": "11",
     "@emotion/styled": "11",
     "animate.css": "^4.1.1",
-    "ethers": "^5.5.3",
+    "dotenv": "^16.0.0",
+    "ethers": "^5.5.4",
     "framer-motion": "5",
     "next": "12.0.8",
     "react": "17.0.2",
