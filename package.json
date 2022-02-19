@@ -6,7 +6,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "init:sdk": "node scripts/1-initialize-sdk.js"
+    "script1": "node scripts/1-initialize-sdk.js",
+    "script2": "node scripts/2-deploy-drop.js",
+    "script3": "node scripts/3-config-nft.js",
+    "script4": "node scripts/4-set-claim-condition.js"
   },
   "dependencies": {
     "@3rdweb/hooks": "^1.9.2",

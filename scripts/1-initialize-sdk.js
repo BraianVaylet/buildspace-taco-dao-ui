@@ -5,10 +5,6 @@ import ethers from 'ethers'
 import dotenv from 'dotenv'
 dotenv.config()
 
-console.log('process.env.PRIVATE_KEY ', process.env.PRIVATE_KEY)
-console.log('process.env.WALLET_ADDRESS ', process.env.WALLET_ADDRESS)
-console.log('process.env.ALCHEMY_API_URL ', process.env.ALCHEMY_API_URL)
-
 // Some quick checks to make sure our .env is working.
 if (!process.env.PRIVATE_KEY || process.env.PRIVATE_KEY === '') {
   console.log('🛑 Private key not found.')
@@ -41,7 +37,7 @@ const sdk = new ThirdwebSDK(
   }
 })()
 
-console.log('sdk', sdk)
-
 // We are exporting the initialized thirdweb SDK so that we can use it in our other scripts
 export default sdk
+
+// Return: 0x5393a8911F641255C8e64243d405A84CAb1Cf5eE
