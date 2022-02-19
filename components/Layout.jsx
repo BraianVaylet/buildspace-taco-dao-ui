@@ -5,7 +5,7 @@ import { Flex, Icon, IconButton, Image, Link, Text, Tooltip, useColorMode } from
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import LOGO from 'public/taco.png'
 
-const Layout = ({ title, contract, head, chain, address, children }) => {
+const Layout = ({ title, contract, head, chain = '', address = '', children }) => {
   const { colorMode, toggleColorMode } = useColorMode()
 
   const handleAddress = () => {
