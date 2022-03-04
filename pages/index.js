@@ -1,9 +1,10 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Head from 'next/head'
-import { Button, Flex, Text, Spinner, useToast, Accordion, AccordionItem, AccordionButton, AccordionIcon, Box, AccordionPanel } from '@chakra-ui/react'
+import { Button, Flex, Text, Spinner, useToast, Accordion, AccordionItem, AccordionButton, AccordionIcon, Box, AccordionPanel, Table, Thead, Tr, Th, Tbody, Td, Tfoot } from '@chakra-ui/react'
 import { useWeb3 } from '@3rdweb/hooks'
 import { ThirdwebSDK } from '@3rdweb/sdk'
+import { ethers } from 'ethers'
 import Layout from 'components/Layout'
 import DEPLOY from 'utils'
 
@@ -14,6 +15,7 @@ const sdk = new ThirdwebSDK('rinkeby')
 
 // We can grab a reference to our ERC-1155 contract.
 const bundleDropModule = sdk.getBundleDropModule(DEPLOY.BUNDLE_DROP_ADDRESS)
+const tokenModule = sdk.getTokenModule(DEPLOY.TOKEN_MODULE_ADDRESS)
 
 export default function Home () {
   const toast = useToast()
@@ -26,6 +28,60 @@ export default function Home () {
   const [isClaiming, setIsClaiming] = useState(false)
   // State variable for us to know if user has our NFT.
   const [hasClaimedNFT, setHasClaimedNFT] = useState(false)
+  // Holds the amount of token each member has in state.
+  const [memberTokenAmounts, setMemberTokenAmounts] = useState({})
+  // The array holding all of our members addresses.
+  const [memberAddresses, setMemberAddresses] = useState([])
+
+  // A fancy function to shorten someones wallet address, no need to show the whole thing.
+  const shortenAddress = (str) => {
+    return str.substring(0, 6) + '...' + str.substring(str.length - 4)
+  }
+
+  // This useEffect grabs all the addresses of our members holding our NFT.
+  useEffect(async () => {
+    if (!hasClaimedNFT) return
+    // Just like we did in the 7-airdrop-token.js file! Grab the users who hold our NFT
+    // with tokenId 0.
+    try {
+      const memberAddresses = await bundleDropModule.getAllClaimerAddresses('0')
+      setMemberAddresses(memberAddresses)
+      console.log('🚀 Members addresses', memberAddresses)
+    } catch (error) {
+      console.error('failed to get member list', error)
+    }
+  }, [hasClaimedNFT])
+
+  // This useEffect grabs the # of token each member holds.
+  useEffect(async () => {
+    if (!hasClaimedNFT) {
+      return
+    }
+
+    // Grab all the balances.
+    try {
+      const amounts = await tokenModule.getAllHolderBalances()
+      setMemberTokenAmounts(amounts)
+      console.log('👜 Amounts', amounts)
+    } catch (error) {
+      console.error('failed to get token amounts', error)
+    }
+  }, [hasClaimedNFT])
+
+  // Now, we combine the memberAddresses and memberTokenAmounts into a single array
+  const memberList = useMemo(() => {
+    return memberAddresses.map((address) => {
+      return {
+        address,
+        tokenAmount: ethers.utils.formatUnits(
+        // If the address isn't in memberTokenAmounts, it means they don't
+        // hold any of our token.
+          memberTokenAmounts[address] || 0,
+          18
+        )
+      }
+    })
+  }, [memberAddresses, memberTokenAmounts])
 
   useEffect(async () => {
     // If they don't have an connected wallet, exit!
@@ -144,28 +200,73 @@ export default function Home () {
       )
     }
 
+    // If the user has already claimed their NFT we want to display the interal DAO page to them
+    // only DAO members will see this. Render all the members + token amounts.
     if (address && hasClaimedNFT) {
       return (
         <Flex
-          p={20}
+          // p={20}
           direction={'column'}
           align={'center'}
           justify={'center'}
           w={'100%'}
         >
-          <Text
-            mb={10}
-            as={'h1'}
-            fontSize={'5xl'}
+          <Flex
+            p={20}
+            direction={'column'}
+            align={'center'}
+            justify={'center'}
+            w={'100%'}
           >
-            🌮DAO Member Page
-          </Text>
+            <Text
+              as={'h1'}
+              fontSize={'5xl'}
+            >
+              🌮DAO Member Page
+            </Text>
+            <Text as={'p'}>
+              Congratulations on being a member
+            </Text>
+          </Flex>
           <Text
-            mb={10}
-            as={'p'}
+            letterSpacing={1}
+            fontWeight={'bold'}
+            fontSize={'3xl'}
+            as={'h2'}
+            p={5}
           >
-            Congratulations on being a member
+            Member List
           </Text>
+          <Flex
+            border={'1px solid'}
+            borderRadius={10}
+            p={2}
+          >
+            <Table size='md'>
+              <Thead>
+                <Tr>
+                  <Th>Address</Th>
+                  <Th>Token Amount</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {memberList.map((member) => {
+                  return (
+                    <Tr key={member.address}>
+                      <Td>{shortenAddress(member.address)}</Td>
+                      <Td>{member.tokenAmount}</Td>
+                    </Tr>
+                  )
+                })}
+              </Tbody>
+              <Tfoot>
+                <Tr>
+                  <Th>Address</Th>
+                  <Th>Token Amount</Th>
+                </Tr>
+              </Tfoot>
+            </Table>
+          </Flex>
         </Flex>
       )
     }
