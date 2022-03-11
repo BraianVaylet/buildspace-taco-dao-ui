@@ -12,7 +12,9 @@
     "script4": "node scripts/4-set-claim-condition.js",
     "script5": "node scripts/5-deploy-token.js",
     "script6": "node scripts/6-print-money.js",
-    "script7": "node scripts/7-airdrop-token.js"
+    "script7": "node scripts/7-airdrop-token.js",
+    "script8": "node scripts/8-deploy-vote.js",
+    "script9": "node scripts/9-setup-vote.js"
   },
   "dependencies": {
     "@3rdweb/hooks": "^1.9.2",
