@@ -26,6 +26,7 @@ const Home = () => {
             fontSize={'3xl'}
             fontWeight={900}
             letterSpacing={'1px'}
+            color={'white'}
           >
             {"Hi 👋, I'm Braian"}
           </Text>
@@ -36,6 +37,7 @@ const Home = () => {
             fontSize={'5xl'}
             fontWeight={600}
             letterSpacing={'.5px'}
+            color={'white'}
           >
             Welcome to TACO DAO
           </Text>
@@ -46,6 +48,7 @@ const Home = () => {
                 <AccordionButton>
                   <Box flex='1' textAlign='left'>
                     <Text
+                      color={'white'}
                       as={'h2'}
                       fontSize={30}
                       fontWeight={'bold'}>
@@ -55,7 +58,7 @@ const Home = () => {
                   <AccordionIcon />
                 </AccordionButton>
               </h2>
-              <AccordionPanel pb={4}>
+              <AccordionPanel pb={4} color={'white'}>
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
@@ -65,6 +68,7 @@ const Home = () => {
         mt={5}
         py={4}
         px={20}
+        color={'white'}
         fontSize={'3xl'}
         fontStyle={'none'}
         as={Link}
