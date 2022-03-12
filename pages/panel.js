@@ -200,7 +200,6 @@ export default function Panel () {
         <Flex>
           <Button
             mt={10}
-            w={'30%'}
             letterSpacing={1}
             borderRadius={'md'}
             bg={'gray.600'}
