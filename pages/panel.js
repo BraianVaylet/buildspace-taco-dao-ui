@@ -5,7 +5,7 @@ import { useWeb3 } from '@3rdweb/hooks'
 import { ThirdwebSDK } from '@3rdweb/sdk'
 import { UnsupportedChainIdError } from '@web3-react/core'
 import { ethers } from 'ethers'
-import { Button, Flex, Text, Spinner, useToast, Accordion, AccordionItem, AccordionButton, AccordionIcon, Box, AccordionPanel, Table, Thead, Tr, Th, Tbody, Td, Tfoot, FormControl, FormLabel, RadioGroup, Radio } from '@chakra-ui/react'
+import { Button, Flex, Text, Spinner, useToast, Box, Table, Thead, Tr, Th, Tbody, Td, Tfoot, FormControl, FormLabel, RadioGroup, Radio } from '@chakra-ui/react'
 import Layout from 'components/Layout'
 import DEPLOY from 'utils'
 
