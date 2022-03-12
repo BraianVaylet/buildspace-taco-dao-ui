@@ -39,6 +39,10 @@ export default function Panel () {
   const [isVoting, setIsVoting] = useState(false)
   const [hasVoted, setHasVoted] = useState(false)
 
+  console.log('proposals', proposals)
+  console.log('isVoting', isVoting)
+  console.log('hasVoted', hasVoted)
+
   // A fancy function to shorten someones wallet address, no need to show the whole thing.
   const shortenAddress = (str) => {
     return str.substring(0, 6) + '...' + str.substring(str.length - 4)
@@ -375,6 +379,7 @@ export default function Panel () {
                 🚀 Active Proposals
               </Text>
               <FormControl
+                as={'form'}
                 onSubmit={async (e) => {
                   e.preventDefault()
                   e.stopPropagation()
@@ -476,6 +481,7 @@ export default function Panel () {
                             defaultChecked={vote.type === 2}
                             value={vote.type}
                             name={proposal.proposalId}
+                            id={proposal.proposalId + '-' + vote.type}
                           >
                             {vote.label}
                           </Radio>

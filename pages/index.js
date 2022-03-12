@@ -59,6 +59,9 @@ const Home = () => {
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4} color={'white'}>
+                <Text>
+                  TacoDAO is a decentralized autonomous organization (DAO) is an entity without central leadership. Decisions are made from the bottom up, governed by a community organized around a specific set of rules that are enforced on a blockchain. This DAO is developed with 'third web' for making decisions related to the Taco Club🌮... It has its own Governance Token and Membership NFT.
+                </Text>
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
