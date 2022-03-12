@@ -10,7 +10,20 @@ El proyecto se encuentra deployado en Vercel para que puedan verlo e interactuar
 
 ## Sobre el proyecto
 
-Proyecto web basado en la web3 desarrollado con **[Next.js](https://nextjs.org/)** y **[ChakraUI](https://chakra-ui.com/)**. 
+Proyecto web basado en la web3 desarrollado con Next.js, ChakraUI y ThirdWeb. En esta aplicación los usuarios podrán formar parte de la TacoDAO donde podran acuñar su NFT de membresia y usar el token DAO para la toma de desiciones dentro de la organizacion del Taco 🌮.
+
+Para esto es necesario primero autenticarse usando la wallet Metamask y configurandola para usar la red de prueba de Rinkeby.
+
+TacoDAO es una organización autónoma descentralizada (DAO) es una entidad sin liderazgo central. Las decisiones se toman de abajo hacia arriba, gobernadas por una comunidad organizada en torno a un conjunto específico de reglas que se aplican en una cadena de bloques. Este DAO se desarrolla con 'tercera web' para la toma de decisiones relacionadas con el Taco Club🌮... 
+
+Tiene su propio Token de Governanza y NFT de Membresía.
+
+## Algunas capturas del proyecto:
+
+![screenshot#1](https://raw.githubusercontent.com/BraianVaylet/buildspace-taco-dao-ui/main/public/index.png)
+![screenshot#2](https://raw.githubusercontent.com/BraianVaylet/buildspace-taco-dao-ui/main/public/panel.png)
+![screenshot#3](https://raw.githubusercontent.com/BraianVaylet/buildspace-taco-dao-ui/main/public/token.png)
+![screenshot#4](https://raw.githubusercontent.com/BraianVaylet/buildspace-taco-dao-ui/main/public/nft.png)
 
 ...
 
