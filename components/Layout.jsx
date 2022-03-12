@@ -52,19 +52,21 @@ const Layout = ({ title, contract, head, chain = '', address = '', children }) =
             </Text>
           </Flex>
 
-          <Tooltip hasArrow label={'Contract'} bg={'gray.900'} color={'white'}>
-            <IconButton
-              mx={2}
-              _hover={{
-                cursor: 'pointer',
-                color: 'yellow.100'
-              }}
-              as={Link}
-              href={`https://rinkeby.etherscan.io/address/${contract}`}
-              isExternal
-              icon={<Icon as={FaEthereum} w={7} h={7} />}
-            />
-          </Tooltip>
+          {contract.map(ctr => (
+            <Tooltip key={ctr.title} hasArrow label={ctr.title} bg={'gray.900'} color={'white'}>
+              <IconButton
+                mx={2}
+                _hover={{
+                  cursor: 'pointer',
+                  color: 'yellow.100'
+                }}
+                as={Link}
+                href={`https://rinkeby.etherscan.io/address/${ctr.contract}`}
+                isExternal
+                icon={<Icon as={FaEthereum} w={7} h={7} />}
+              />
+            </Tooltip>
+          ))}
           <Tooltip hasArrow label={'linkedin'} bg={'gray.900'} color={'white'}>
             <IconButton
               mx={2}
